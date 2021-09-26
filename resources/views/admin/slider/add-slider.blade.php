@@ -16,6 +16,8 @@
                 <label class="control-label col-md-3">Slider Image</label>
                 <div class="col-md-9">
                     <input type="file" name="slider_image" accept="image/*"/>
+                    <span class="text-danger"> {{$errors->has('slider_image') ? $errors->first('slider_image') : ''}}</span>
+
                 </div>
             </div>
 
@@ -23,6 +25,8 @@
                     <label class="control-label col-md-3">Slider Caption Heading</label>
                     <div class="col-md-9">
                         <input type="text" name="slider_caption_heading" class="form-control"/>
+                        <span class="text-danger"> {{$errors->has('slider_caption_heading') ? $errors->first('slider_caption_heading') : ''}}</span>
+
                     </div>
                 </div>
 
@@ -30,6 +34,8 @@
                     <label class="control-label col-md-3">Slider Caption Paragraph</label>
                     <div class="col-md-9">
                         <input type="text" name="slider_caption_paragraph" class="form-control"/>
+                        <span class="text-danger"> {{$errors->has('slider_caption_paragraph') ? $errors->first('slider_caption_paragraph') : ''}}</span>
+
                     </div>
                 </div>
 

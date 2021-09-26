@@ -18,6 +18,15 @@ class BlogController extends Controller
     }
 
     public function newBlog(Request $request){
+
+        $validated = $request->validate([
+            'blog_title'             => 'required',
+            'blog_short_description' => 'required',
+            'blog_long_description'  => 'required',
+            'blog_image'             => 'required|file',
+        ]);
+
+
         $image     = $request->file('blog_image');
         $imageName = $image->getClientOriginalName();
         $directory = 'blog-images/';
@@ -33,7 +42,7 @@ class BlogController extends Controller
         $blog->save();
 
         return redirect('/blog/add-blog')->with('message','Blog info created successfully');
-  
+
     }
 
     public function manageBlog(){
@@ -60,7 +69,7 @@ class BlogController extends Controller
         if($blogImage){
             $blog = Blog::find($request->id);
             unlink($blog->blog_image);
-            
+
             $imageName = $blogImage->getClientOriginalName();
             $directory = 'blog-images/';
             $blogImage->move($directory, $imageName);
@@ -98,4 +107,5 @@ class BlogController extends Controller
 
         return redirect('/blog/manage-blog')->with('message','Blog info delete successfully');
     }
+
 }

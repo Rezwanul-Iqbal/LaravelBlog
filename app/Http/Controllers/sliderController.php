@@ -13,6 +13,13 @@ class sliderController extends Controller
     }
 
     public function newSlider(Request $request){
+
+        $validated = $request->validate([
+            'slider_image'             =>'required|file',
+            'slider_caption_heading'   => 'required|regex:/(^([a-zA-z _]+)(\d+)?$)/u|max:15|min:3',
+            'slider_caption_paragraph' => 'required',
+        ]);
+
         $image     = $request->file('slider_image');
         $imageName = $image->getClientOriginalName();
         $directory = 'slider-images/';
@@ -25,7 +32,7 @@ class sliderController extends Controller
         $slider->save();
 
         return redirect('/slider/add-slider')->with('message','Slider info created successfully');
-  
+
     }
 
     public function manageSlider(){
@@ -51,7 +58,7 @@ class sliderController extends Controller
         if($sliderImage){
             $slider = Slider::find($request->id);
             unlink($slider->slider_image);
-            
+
             $imageName = $sliderImage->getClientOriginalName();
             $directory = 'slider-images/';
             $sliderImage->move($directory, $imageName);

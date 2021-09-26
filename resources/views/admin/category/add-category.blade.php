@@ -16,6 +16,7 @@
                         <label class="control-label col-md-3">Category Name</label>
                         <div class="col-md-9">
                             <input type="text" name="category_name" class="form-control"/>
+                           <span class="text-danger"> {{$errors->has('category_name') ? $errors->first('category_name') : ''}}</span>
                         </div>
                     </div>
 
@@ -23,6 +24,7 @@
                         <label class="control-label col-md-3">Category Description</label>
                         <div class="col-md-9">
                             <textarea class="form-control" name="category_description"></textarea>
+                            <span class="text-danger"> {{$errors->has('category_description') ? $errors->first('category_description') : ''}}</span>
                         </div>
                     </div>
 

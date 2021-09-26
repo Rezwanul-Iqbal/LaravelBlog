@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -44,101 +45,113 @@ Route::post('/visitor-sign-in',[
     'as'    =>  'visitor-sign-in'
 ]);
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/slider/add-slider',[
-    'uses'  =>  'sliderController@addSlider',
-    'as'    =>  'add-slider'
-]);
-
-Route::post('/slider/new-slider',[
-    'uses'  =>  'sliderController@newSlider',
-    'as'    =>  'new-slider'
-]);
-
-Route::get('/slider/manage-slider',[
-    'uses'  =>  'sliderController@manageSlider',
-    'as'    =>  'manage-slider'
-]);
-
-Route::get('/slider/edit-slider/{id}',[
-    'uses'  =>  'sliderController@editSlider',
-    'as'    =>  'edit-slider'
-]);
-
-Route::post('/slider/update-slider',[
-    'uses'  =>  'sliderController@updateSlider',
-    'as'    =>  'update-slider'
-]);
-
-Route::post('/slider/delete-slider', [
-    'uses' => 'sliderController@deleteSlider',
-    'as'   => 'delete-slider'
-]);
+Route::middleware('superAdmin')->group(function () {
 
 
-Route::get('/category/add-category',[
-    'uses'  =>  'categoryController@addCategory',
-    'as'    =>  'add-category'
-]);
+    Route::get('/slider/add-slider',[
+        'uses'  =>  'sliderController@addSlider',
+        'as'    =>  'add-slider'
+    ]);
+
+    Route::post('/slider/new-slider',[
+        'uses'  =>  'sliderController@newSlider',
+        'as'    =>  'new-slider'
+    ]);
+
+    Route::get('/slider/manage-slider',[
+        'uses'  =>  'sliderController@manageSlider',
+        'as'    =>  'manage-slider'
+    ]);
+
+    Route::get('/slider/edit-slider/{id}',[
+        'uses'  =>  'sliderController@editSlider',
+        'as'    =>  'edit-slider'
+    ]);
+
+    Route::post('/slider/update-slider',[
+        'uses'  =>  'sliderController@updateSlider',
+        'as'    =>  'update-slider'
+    ]);
+
+    Route::post('/slider/delete-slider', [
+        'uses' => 'sliderController@deleteSlider',
+        'as'   => 'delete-slider'
+    ]);
 
 
-Route::post('/category/new-category',[
-    'uses'  =>  'categoryController@newCategory',
-    'as'    =>  'new-category'
-]);
+    Route::get('/category/add-category',[
+        'uses'  =>  'categoryController@addCategory',
+        'as'    =>  'add-category',
+        'middleware' => 'superAdmin'
+    ]);
 
-Route::get('/category/manage-category',[
-    'uses'  =>  'categoryController@manageCategory',
-    'as'    =>  'manage-category'
-]);
 
-Route::get('/category/edit-category/{id}',[
-    'uses'  =>  'categoryController@editCategory',
-    'as'    =>  'edit-category'
-]);
+    Route::post('/category/new-category',[
+        'uses'  =>  'categoryController@newCategory',
+        'as'    =>  'new-category'
+    ]);
 
-Route::post('/category/update-category',[
-    'uses'  =>  'categoryController@updateCategory',
-    'as'    =>  'update-category'
-]);
+    Route::get('/category/manage-category',[
+        'uses'  =>  'categoryController@manageCategory',
+        'as'    =>  'manage-category'
+    ]);
 
-Route::post('/category/delete-category', [
-    'uses' => 'categoryController@deleteCategory',
-    'as'   => 'delete-category'
-]);
+    Route::get('/category/edit-category/{id}',[
+        'uses'  =>  'categoryController@editCategory',
+        'as'    =>  'edit-category'
+    ]);
 
-Route::get('/blog/add-blog', [
-    'uses' => 'BlogController@addBlog',
-    'as'   => 'add-blog'
-]);
+    Route::post('/category/update-category',[
+        'uses'  =>  'categoryController@updateCategory',
+        'as'    =>  'update-category'
+    ]);
 
-Route::post('/blog/new-blog', [
-    'uses' => 'BlogController@newBlog',
-    'as'   => 'new-blog'
-]);
+    Route::post('/category/delete-category', [
+        'uses' => 'categoryController@deleteCategory',
+        'as'   => 'delete-category'
+    ]);
 
-Route::get('/blog/manage-blog', [
-    'uses' => 'BlogController@manageBlog',
-    'as'   => 'manage-blog'
-]);
+    Route::get('/blog/add-blog', [
+        'uses' => 'BlogController@addBlog',
+        'as'   => 'add-blog'
+    ]);
 
-Route::get('/category/edit-blog/{id}',[
-    'uses'  =>  'BlogController@editBlog',
-    'as'    =>  'edit-blog'
-]);
+    Route::post('/blog/new-blog', [
+        'uses' => 'BlogController@newBlog',
+        'as'   => 'new-blog'
+    ]);
 
-Route::post('/category/update-blog',[
-    'uses'  =>  'BlogController@updateBlog',
-    'as'    =>  'update-blog'
-]);
+    Route::get('/blog/manage-blog', [
+        'uses' => 'BlogController@manageBlog',
+        'as'   => 'manage-blog'
+    ]);
 
-Route::post('/category/delete-blog',[
-    'uses'  =>  'BlogController@deleteBlog',
-    'as'    =>  'delete-blog'
-]);
+    Route::get('/category/edit-blog/{id}',[
+        'uses'  =>  'BlogController@editBlog',
+        'as'    =>  'edit-blog'
+    ]);
+
+    Route::post('/category/update-blog',[
+        'uses'  =>  'BlogController@updateBlog',
+        'as'    =>  'update-blog'
+    ]);
+
+    Route::post('/category/delete-blog',[
+        'uses'  =>  'BlogController@deleteBlog',
+        'as'    =>  'delete-blog'
+    ]);
+});
+
+
+
+
+
+
 
 
 

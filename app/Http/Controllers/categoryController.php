@@ -15,6 +15,12 @@ class categoryController extends Controller
 
     public function newCategory(Request $request){
 
+        //----------------validation--------------
+        $validated = $request->validate([
+            'category_name' => 'required|regex:/(^([a-zA-z _]+)(\d+)?$)/u|max:15|min:3',
+            'category_description' => 'required',
+        ]);
+
         Category::saveCategoryInfo($request);
         return redirect('/category/add-category')->with('message','Category info save successfully');
     }
@@ -25,7 +31,7 @@ class categoryController extends Controller
         ]);
     }
 
-    public function editCategory($id){   
+    public function editCategory($id){
         return view('admin.category.edit-category',[
             'category' => Category::find($id)
         ]);

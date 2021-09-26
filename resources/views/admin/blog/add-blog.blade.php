@@ -26,6 +26,7 @@
                         <label class="control-label col-md-3">Blog Title</label>
                         <div class="col-md-9">
                             <input type="text" name="blog_title" class="form-control"/>
+                            <span class="text-danger"> {{$errors->has('blog_title') ? $errors->first('blog_title') : ''}}</span>
                         </div>
                     </div>
 
@@ -33,18 +34,22 @@
                         <label class="control-label col-md-3">Blog Short Description</label>
                         <div class="col-md-9">
                             <textarea class="form-control" name="blog_short_description"></textarea>
+                            <span class="text-danger"> {{$errors->has('blog_short_description') ? $errors->first('blog_short_description') : ''}}</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3">Blog Long Description</label>
                         <div class="col-md-9">
                             <textarea class="form-control" id="editor" name="blog_long_description"></textarea>
+                            <span class="text-danger"> {{$errors->has('blog_long_description') ? $errors->first('blog_long_description') : ''}}</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3">Blog Image</label>
                         <div class="col-md-9">
                             <input type="file" name="blog_image" accept="image/*"/>
+                            <span class="text-danger"> {{$errors->has('blog_image') ? $errors->first('blog_image') : ''}}</span>
+
                         </div>
                     </div>
 

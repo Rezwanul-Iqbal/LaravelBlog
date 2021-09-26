@@ -14,8 +14,8 @@
         @foreach($sliders as $slider)
         <!-- Slide One - Set the background image for this slide in the line below -->
         <div class="carousel-item @if ($loop->first) active @endif">
-          <img src="{{asset($slider->slider_image)}}" class="d-block w-100"  alt="First Slide"> 
-       
+          <img src="{{asset($slider->slider_image)}}" class="d-block w-100"  alt="First Slide">
+
           <div class="carousel-caption d-none d-md-block">
             <h3>{{$slider->slider_caption_heading}}</h3>
             <p>{{$slider->slider_caption_paragraph}}</p>
@@ -34,13 +34,13 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-      
+
 
     </div>
 
   </header>
 <div class="container">
-    <h1 class="my-4">Welcome to Our Blog</h1>
+    <h1 class="my-4">All News</h1>
 
     <!-- Marketing Icons Section -->
     <div class="row">
@@ -56,7 +56,7 @@
                 <a href="{{route('blog-details',['id'=>$blog->id])}}" class="btn btn-primary">Learn More</a>
               </div>
             </div>
-        </div>       
+        </div>
         @endforeach
     </div>
     <!-- /.row -->
